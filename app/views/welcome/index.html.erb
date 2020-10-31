@@ -1,2 +1,15 @@
 <h1>Hello Rails!</h1>
 <%= link_to 'My Blog', controller: 'articles' %>
+
+<h2>Sign In Here</h2>
+
+<% if logged_in? %>
+    <h3>You are Logged In, <%= current_user.username %></h3>
+    <%= button_to "Sign Out", logout_path, method: "delete" %>
+
+<% end %>
+
+<% if !logged_in? %>
+    <%= button_to "Login", '/login', method: :get%>
+    <%= button_to "Sign Up", '/users/new', method: :get%>
+<% end %>
