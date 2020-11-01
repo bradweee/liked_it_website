@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by(username: params[:username])
     if @user && @user.authenticate(params[:password])
-      sessions[:user_id] = @user.id
+      session[:user_id] = @user.id
       redirect_to '/welcome'
     else
       redirect_to '/login'
@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
   def destroy
     session.delete(:user_id)
     @current_user = nil
-    redirect_to '/login'
+    redirect_to '/welcome'
   end
 
   def page_requires_login
