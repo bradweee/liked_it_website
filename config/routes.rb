@@ -9,19 +9,17 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy'
   
 
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :update, :index]
 
   get 'login', to: 'sessions#new'
-
   post 'login', to: 'sessions#create'
-
   get 'welcome', to: 'sessions#welcome'
-
   get 'authorized', to: 'sessions#page_requires_login'
+
 
   resources :articles do
     resources :comments
   end
 
-  root 'welcome#index'
+  root 'sessions#welcome'
 end
